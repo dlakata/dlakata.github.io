@@ -1,9 +1,13 @@
 body { 
-       font-family: "Source Sans Pro", sans-serif;
+       font-family: 'Vollkorn', serif;
+       text-align: center;
  }
 
 h1 {
-     font-size: 72px;
+     font-size: 48px;
      font-weight: 400;
-     text-align: center;
+ }
+
+a { 
+    color: inherit;
  }
