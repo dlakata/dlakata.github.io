@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Travel</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css"
+      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js"
+      integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s="
+      crossorigin=""
+    ></script>
+
+    <script src="js/BoundaryCanvas.js"></script>
+    <script src="js/icelandBoundary.js"></script>
+
+    <style>
+      .leaflet-container {
+        background: transparent;
+        outline: 0;
+      }
+      .leaflet-control-attribution {
+        display: none;
+      }
+      #map-column {
+        flex: 20%;
+        align-items: center;
+        display: flex;
+      }
+      #map {
+        width: 100%;
+        min-width: 300px;
+        height: 40vh;
+      }
+
+      .selected-marker {
+        filter: hue-rotate(120deg);
+        z-index: 10000 !important;
+      }
+
+      #gallery {
+        height: 100vh;
+        overflow-y: scroll;
+        flex: 80%;
+      }
+
+      @media screen and (max-width: 800px) {
+        #map-column {
+          visibility: hidden;
+          display: none;
+        }
+        #gallery {
+          flex: 100%;
+        }
+      }
+
+      figure {
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        text-align: center;
+      }
+
+      figcaption {
+        font-style: italic;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 90vh;
+      }
+
+      body {
+        margin: 0px;
+        text-align: center;
+      }
+
+      .row {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div class="row">
+        <div id="gallery"><p>Iceland 2022</p></div>
+        <div id="map-column"><div id="map"></div></div>
+      </div>
+    </div>
+    <script>
+      const map = L.map("map", {
+        zoomControl: false,
+      }).setView([64.9631, -19.0208], 5);
+
+      map._handlers.forEach((handler) => {
+        handler.disable();
+      });
+
+      const tiles = L.TileLayer.BoundaryCanvas.createFromLayer(
+        L.tileLayer(
+          "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+          {}
+        ),
+        { boundary: ICELAND_BOUNDARY, trackAttribution: true }
+      ).addTo(map);
+
+      const locations = [
+        {
+          latLng: new L.LatLng(63.8933, -22.2697),
+          name: "Fagradalsfjall",
+          date: new Date(2022, 8, 24),
+          images: [
+            "DSC_0556.JPG",
+            "DSC_0567.JPG",
+            "DSC_0576.JPG",
+            "DSC_0579.JPG",
+          ],
+        },
+
+        {
+          latLng: new L.LatLng(64.264338, -21.11593),
+          name: "Þingvellir",
+          date: new Date(2022, 8, 25),
+          images: [
+            "DSC_0611.JPG",
+            "DSC_0614.JPG",
+            "DSC_0623.JPG",
+            "DSC_0631.JPG",
+            "DSC_0643.JPG",
+            "DSC_0652_end_thingvellir.JPG",
+            "IMG_5820.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.316674, -20.293272),
+          name: "Geysir",
+          date: new Date(2022, 8, 25),
+          images: ["DSC_0668.JPG", "DSC_0672.JPG", "DSC_0675.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.326927, -20.120711),
+          name: "Gulfoss",
+          date: new Date(2022, 8, 25),
+          images: ["DSC_0682.JPG", "DSC_0697.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.040934, -20.884777),
+          name: "Kerið Crater",
+          date: new Date(2022, 8, 25),
+          images: ["DSC_0707_start_kerid.JPG", "DSC_0713.JPG"],
+        },
+        {
+          latLng: new L.LatLng(63.61561, -19.988154),
+          name: "Seljalandsfoss",
+          date: new Date(2022, 8, 26),
+          images: [
+            "DSC_0743.JPG",
+            "DSC_0774.JPG",
+            "DSC_0779.JPG",
+            "DSC_0786.JPG",
+            "DSC_0804.JPG",
+            "DSC_0806.JPG",
+            "DSC_0812.JPG",
+            "DSC_0814.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(63.532145, -19.511235),
+          name: "Skógafoss",
+          date: new Date(2022, 8, 26),
+          images: [
+            "DSC_0815.JPG",
+            "DSC_0827.JPG",
+            "DSC_0854.JPG",
+            "DSC_0869.JPG",
+            "DSC_0879.JPG",
+            "DSC_0883.JPG",
+            "DSC_0902.JPG",
+            "DSC_0925.JPG",
+            "DSC_0936.JPG",
+            "DSC_0941.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(63.535945, -19.346744),
+          name: "Sólheimajökull",
+          date: new Date(2022, 8, 26),
+          images: [
+            "DSC_0957.JPG",
+            "DSC_0967.JPG",
+            "DSC_0971.JPG",
+            "DSC_1011.JPG",
+            "DSC_1055.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(63.406452, -19.070465),
+          name: "Reynisfjara Beach",
+          date: new Date(2022, 8, 26),
+          images: [
+            "DSC_1072_start_reynisfjara.JPG",
+            "DSC_1077.JPG",
+            "DSC_1094.JPG",
+            "DSC_1108.JPG",
+            "DSC_1121.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(63.565498, -18.255535),
+          name: "Meðalland Airbnb",
+          date: new Date(2022, 8, 26),
+          images: [
+            "DSC_1139.JPG",
+            "DSC_1152.JPG",
+            "DSC_1158.JPG",
+            "DSC_1165.JPG",
+            "DSC_1199.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(63.772244, -18.173928),
+          name: "Fjaðrárgljúfur",
+          date: new Date(2022, 8, 27),
+          images: [
+            "DSC_1250.JPG",
+            "DSC_1260.JPG",
+            "DSC_1274.JPG",
+            "DSC_1280.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(63.799737, -18.06127),
+          name: "Stjórnarfoss",
+          date: new Date(2022, 8, 27),
+          images: [
+            "DSC_1283.JPG",
+            "DSC_1293.JPG",
+            "DSC_1306.JPG",
+            "DSC_1312.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.016485, -16.966285),
+          name: "Skaftafell",
+          date: new Date(2022, 8, 27),
+          images: ["DSC_1321.JPG", "DSC_1347.JPG", "DSC_1354.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.027359, -16.975161),
+          name: "Svartifoss, Skaftafell",
+          date: new Date(2022, 8, 27),
+          images: ["DSC_1374.JPG", "DSC_1381.JPG", "DSC_1387.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.027882, -16.982372),
+          name: "Sjónarsker, Skaftafell",
+          date: new Date(2022, 8, 27),
+          images: ["DSC_1423.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.023955, -16.993325),
+          name: "Sel, Skaftafell",
+          date: new Date(2022, 8, 27),
+          images: ["DSC_1440.JPG", "DSC_1444_end_sel.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.052059, -16.179022),
+          name: "Jökulsárlón",
+          date: new Date(2022, 8, 27),
+          images: [
+            "DSC_1448.JPG",
+            "DSC_1450.JPG",
+            "DSC_1464_end_jokulsarlon.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.043065, -16.175841),
+          name: "Diamond Beach",
+          date: new Date(2022, 8, 27),
+          images: [
+            "DSC_1478.JPG",
+            "DSC_1492.JPG",
+            "DSC_1504.JPG",
+            "DSC_1524.JPG",
+            "DSC_1530.JPG",
+            "DSC_1542_end_diamond_beach.JPG",
+            "IMG_6069.jpg",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.24777, -15.686425),
+          name: "Hornafjörður Airbnb",
+          date: new Date(2022, 8, 27),
+          images: ["DSC_1543_start_aurora.JPG", "DSC_1549.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.419213, -15.401251),
+          name: "Hoffellsjökull",
+          date: new Date(2022, 8, 28),
+          images: [
+            "DSC_1565.JPG",
+            "DSC_1570_start_hoffellsjokull.JPG",
+            "DSC_1575.JPG",
+            "DSC_1578.JPG",
+            "DSC_1579.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.242397, -15.209374),
+          name: "Ósland, Höfn",
+          date: new Date(2022, 8, 28),
+          images: [
+            "DSC_1592.JPG",
+            "DSC_1594.JPG",
+            "DSC_1603.JPG",
+            "DSC_1613.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.290626, -15.103381),
+          name: "Roadside vista",
+          date: new Date(2022, 8, 28),
+          images: [
+            "DSC_1624.JPG",
+            "DSC_1643.JPG",
+            "DSC_1648.JPG",
+            "DSC_1668.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.341247, -14.937701),
+          name: "Skútafoss",
+          date: new Date(2022, 8, 28),
+          images: [
+            "DSC_1696_start_skutafoss.JPG",
+            "DSC_1697.JPG",
+            "DSC_1719.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.676019, -14.344311),
+          name: "Teigarhorn Nature Preserve",
+          date: new Date(2022, 8, 28),
+          images: [
+            "DSC_1770.JPG",
+            "DSC_1779.JPG",
+            "DSC_1780.JPG",
+            "DSC_1789.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.835538, -13.880489),
+          name: "Petra's Stone Collection",
+          date: new Date(2022, 8, 29),
+          images: ["DSC_1825.JPG", "DSC_1837_petra_rocks.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.038876, -14.347944),
+          name: "Útsýnispallur Grænafell",
+          date: new Date(2022, 8, 29),
+          images: ["DSC_1840.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.276398, -14.414994),
+          name: "Egilsstaðir",
+          date: new Date(2022, 8, 29),
+          images: ["DSC_1860.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.457192, -15.807219),
+          name: "Roadside vista",
+          date: new Date(2022, 8, 29),
+          images: ["DSC_1874.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.642092, -16.844672),
+          name: "Mývatn geothermal area",
+          date: new Date(2022, 8, 29),
+          images: [
+            "DSC_1880.JPG",
+            "DSC_1887.JPG",
+            "DSC_1891.JPG",
+            "DSC_1894.JPG",
+            "DSC_1906.JPG",
+            "DSC_1908.JPG",
+            "DSC_1911.JPG",
+            "DSC_1948.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(65.590989, -16.909714),
+          name: "Dimmuborgir lava field",
+          date: new Date(2022, 8, 30),
+          images: [
+            "DSC_1995.JPG",
+            "DSC_2007.JPG",
+            "DSC_2009.JPG",
+            "DSC_2010.JPG",
+            "DSC_2016.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(65.626258, -16.882681),
+          name: "Grjótagjá",
+          date: new Date(2022, 8, 30),
+          images: ["DSC_2018.JPG", "DSC_2023.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.815761, -16.387051),
+          name: "Dettifoss",
+          date: new Date(2022, 8, 30),
+          images: ["DSC_2056.JPG"],
+        },
+        {
+          latLng: new L.LatLng(66.0001, -16.510856),
+          name: "Ásbyrgi",
+          date: new Date(2022, 8, 30),
+          images: ["DSC_2096.JPG", "DSC_2100.JPG", "DSC_2119_end_asbyrgi.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.568633, -17.037875),
+          name: "Skútustaðagígar",
+          date: new Date(2022, 9, 1),
+          images: [
+            "DSC_2121.JPG",
+            "DSC_2124.JPG",
+            "DSC_2131.JPG",
+            "DSC_2147.JPG",
+            "DSC_2154.JPG",
+            "DSC_2173.JPG",
+            "DSC_2174.JPG",
+            "DSC_2184.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(65.68280296031321, -17.5501883417751),
+          name: "Goðafoss",
+          date: new Date(2022, 9, 1),
+          images: ["DSC_2192.JPG", "DSC_2213.JPG"],
+        },
+        {
+          latLng: new L.LatLng(65.332414, -20.570175),
+          name: "Kolugljúfur",
+          date: new Date(2022, 9, 2),
+          images: [
+            "DSC_2268.JPG",
+            "DSC_2285.JPG",
+            "DSC_2302.JPG",
+            "DSC_2305.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.755958, -21.548328),
+          name: "Glanni",
+          date: new Date(2022, 9, 2),
+          images: ["DSC_2307_start_glanni.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.802853, -23.080368),
+          name: "Ytri Tunga",
+          date: new Date(2022, 9, 2),
+          images: [
+            "DSC_2342.JPG",
+            "DSC_2343.JPG",
+            "DSC_2354.JPG",
+            "DSC_2369.JPG",
+            "DSC_2374.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.772919, -23.631376),
+          name: "Near Snæfellsbær Airbnb",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2401.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.764375, -23.624889),
+          name: "Arnarstapi",
+          date: new Date(2022, 9, 3),
+          images: [
+            "DSC_2412.JPG",
+            "DSC_2439.JPG",
+            "DSC_2458.JPG",
+            "DSC_2496.JPG",
+            "DSC_2497.JPG",
+            "DSC_2509.JPG",
+            "DSC_2524.JPG",
+            "DSC_2539.JPG",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.735497, -23.775953),
+          name: "Lóndrangar",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2550.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.750052, -23.915444),
+          name: "Djúpalónssandur Beach",
+          date: new Date(2022, 9, 3),
+          images: [
+            "DSC_2589.JPG",
+            "DSC_2602.JPG",
+            "DSC_2612.JPG",
+            "DSC_2615.JPG",
+            "DSC_2639.JPG",
+            "IMG_6400.jpg",
+          ],
+        },
+        {
+          latLng: new L.LatLng(64.880814, -23.985833),
+          name: "Skarðsvík Beach",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2674.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.896181, -23.812044),
+          name: "Svöðufoss",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2690.JPG", "DSC_2700.JPG", "DSC_2703.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.926011, -23.312192),
+          name: "Kirkjufell",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2707.JPG", "DSC_2740.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.752701, -23.648412),
+          name: "Near Snæfellsbær Airbnb",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2767.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.772919, -23.631376),
+          name: "Near Snæfellsbær Airbnb",
+          date: new Date(2022, 9, 3),
+          images: ["DSC_2383_start_aurora.JPG", "DSC_2387.JPG"],
+        },
+      ];
+
+      // add all images to the dom
+      locations.forEach((location, locationIndex) => {
+        location.images.forEach((locationImage) => {
+          if (location.name === "Unknown") {
+            document
+              .getElementById("gallery")
+              .insertAdjacentHTML(
+                "beforeend",
+                `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${location.name}, ${locationImage}</figcaption></figure>`
+              );
+          } else {
+            document
+              .getElementById("gallery")
+              .insertAdjacentHTML(
+                "beforeend",
+                `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${
+                  location.name
+                }, ${location.date.toDateString()}</figcaption></figure>`
+              );
+          }
+        });
+      });
+
+      const figures = document.querySelectorAll("figure");
+      const markers = [];
+      const markerIcon = L.icon({
+        iconSize: [15, 25],
+        iconAnchor: [10, 25],
+        popupAnchor: [2, -24],
+        iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
+      });
+      locations.forEach((location) => {
+        const markerLatLng = location.latLng;
+        if (!markerLatLng) {
+          return;
+        }
+
+        const marker = L.marker(markerLatLng, { icon: markerIcon }).bindTooltip(
+          location.name,
+          {}
+        );
+        markers.push(marker);
+        marker.addTo(map).on("click", (e) => {
+          markers.forEach((m) => {
+            m._icon.classList.remove("selected-marker");
+          });
+          marker._icon.classList.add("selected-marker");
+          Array.from(figures).some((figure) => {
+            const locationIndex = figure
+              .querySelectorAll("img")[0]
+              .getAttribute("data-location");
+            if (locationIndex) {
+              const figureLocation = locations[locationIndex];
+              if (
+                figureLocation.latLng &&
+                figureLocation.latLng.distanceTo(markerLatLng) < 10
+              ) {
+                figure.scrollIntoView();
+                return true;
+              }
+            }
+          });
+        });
+      });
+
+      var timer = null;
+      function runOnScroll() {
+        if (timer !== null) {
+          clearTimeout(timer);
+        }
+
+        timer = setTimeout(() => {
+          const element = document.elementFromPoint(
+            window.innerWidth / 2,
+            window.innerHeight / 2
+          );
+          const locationIndex = element.getAttribute("data-location");
+          if (locationIndex && locations[locationIndex]) {
+            markers.forEach((m) => {
+              m._icon.classList.remove("selected-marker");
+            });
+            markers[locationIndex]._icon.classList.add("selected-marker");
+          }
+        }, 10);
+      }
+
+      document
+        .getElementById("gallery")
+        .addEventListener("scroll", () => runOnScroll(), { passive: true });
+
+      // lazy loading images
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            var image = entry.target;
+            image.src = image.dataset.src;
+            imageObserver.unobserve(image);
+          }
+        });
+      });
+      const images = document.querySelectorAll("#gallery img");
+      images.forEach((image) => {
+        imageObserver.observe(image);
+      });
+    </script>
+  </body>
+</html>
