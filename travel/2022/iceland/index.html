@@ -61,7 +61,7 @@
       }
 
       figure {
-        padding: 20px;
+        padding: 10px;
         margin-left: auto;
         margin-right: auto;
         display: block;
@@ -82,6 +82,10 @@
         text-align: center;
       }
 
+      #header {
+        padding: 10px;
+      }
+
       .row {
         display: flex;
       }
@@ -91,7 +95,17 @@
   <body>
     <div>
       <div class="row">
-        <div id="gallery"><p>Iceland 2022</p></div>
+        <div id="gallery">
+          <div id="header">
+            <p>Iceland 2022</p>
+            <p>
+              We drove around Iceland's Ring Road from 9/23-10/4/22. The Ring
+              Road, completed in 1974, is a national highway that circles the
+              entire island. It is 821 miles long, although we somehow drove
+              1605 miles on our trip.
+            </p>
+          </div>
+        </div>
         <div id="map-column"><div id="map"></div></div>
       </div>
     </div>
@@ -116,6 +130,7 @@
         {
           latLng: new L.LatLng(63.8933, -22.2697),
           name: "Fagradalsfjall",
+          notes: "",
           date: new Date(2022, 8, 24),
           images: [
             "DSC_0556.JPG",
@@ -127,7 +142,8 @@
 
         {
           latLng: new L.LatLng(64.264338, -21.11593),
-          name: "Þingvellir",
+          name: "Þingvellir National Park",
+          notes: "",
           date: new Date(2022, 8, 25),
           images: [
             "DSC_0611.JPG",
@@ -142,24 +158,28 @@
         {
           latLng: new L.LatLng(64.316674, -20.293272),
           name: "Geysir",
+          notes: "",
           date: new Date(2022, 8, 25),
           images: ["DSC_0668.JPG", "DSC_0672.JPG", "DSC_0675.JPG"],
         },
         {
           latLng: new L.LatLng(64.326927, -20.120711),
-          name: "Gulfoss",
+          name: "Gulfoss Waterfall",
+          notes: "",
           date: new Date(2022, 8, 25),
           images: ["DSC_0682.JPG", "DSC_0697.JPG"],
         },
         {
           latLng: new L.LatLng(64.040934, -20.884777),
           name: "Kerið Crater",
+          notes: "",
           date: new Date(2022, 8, 25),
           images: ["DSC_0707_start_kerid.JPG", "DSC_0713.JPG"],
         },
         {
           latLng: new L.LatLng(63.61561, -19.988154),
-          name: "Seljalandsfoss",
+          name: "Seljalandsfoss Waterfall",
+          notes: "",
           date: new Date(2022, 8, 26),
           images: [
             "DSC_0743.JPG",
@@ -174,7 +194,8 @@
         },
         {
           latLng: new L.LatLng(63.532145, -19.511235),
-          name: "Skógafoss",
+          name: "Skógafoss Waterfall",
+          notes: "",
           date: new Date(2022, 8, 26),
           images: [
             "DSC_0815.JPG",
@@ -191,7 +212,8 @@
         },
         {
           latLng: new L.LatLng(63.535945, -19.346744),
-          name: "Sólheimajökull",
+          name: "Sólheimajökull Glacier",
+          notes: "",
           date: new Date(2022, 8, 26),
           images: [
             "DSC_0957.JPG",
@@ -204,6 +226,7 @@
         {
           latLng: new L.LatLng(63.406452, -19.070465),
           name: "Reynisfjara Beach",
+          notes: "",
           date: new Date(2022, 8, 26),
           images: [
             "DSC_1072_start_reynisfjara.JPG",
@@ -216,6 +239,7 @@
         {
           latLng: new L.LatLng(63.565498, -18.255535),
           name: "Meðalland Airbnb",
+          notes: "",
           date: new Date(2022, 8, 26),
           images: [
             "DSC_1139.JPG",
@@ -228,6 +252,7 @@
         {
           latLng: new L.LatLng(63.772244, -18.173928),
           name: "Fjaðrárgljúfur",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: [
             "DSC_1250.JPG",
@@ -238,7 +263,8 @@
         },
         {
           latLng: new L.LatLng(63.799737, -18.06127),
-          name: "Stjórnarfoss",
+          name: "Stjórnarfoss Waterfall",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: [
             "DSC_1283.JPG",
@@ -249,31 +275,36 @@
         },
         {
           latLng: new L.LatLng(64.016485, -16.966285),
-          name: "Skaftafell",
+          name: "Skaftafell National Park",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: ["DSC_1321.JPG", "DSC_1347.JPG", "DSC_1354.JPG"],
         },
         {
           latLng: new L.LatLng(64.027359, -16.975161),
-          name: "Svartifoss, Skaftafell",
+          name: "Svartifoss Waterfall, Skaftafell National Park",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: ["DSC_1374.JPG", "DSC_1381.JPG", "DSC_1387.JPG"],
         },
         {
           latLng: new L.LatLng(64.027882, -16.982372),
-          name: "Sjónarsker, Skaftafell",
+          name: "Sjónarsker, Skaftafell National Park",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: ["DSC_1423.JPG"],
         },
         {
           latLng: new L.LatLng(64.023955, -16.993325),
-          name: "Sel, Skaftafell",
+          name: "Sel, Skaftafell National Park",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: ["DSC_1440.JPG", "DSC_1444_end_sel.JPG"],
         },
         {
           latLng: new L.LatLng(64.052059, -16.179022),
-          name: "Jökulsárlón",
+          name: "Jökulsárlón Glacier Lagoon",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: [
             "DSC_1448.JPG",
@@ -284,6 +315,7 @@
         {
           latLng: new L.LatLng(64.043065, -16.175841),
           name: "Diamond Beach",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: [
             "DSC_1478.JPG",
@@ -298,12 +330,14 @@
         {
           latLng: new L.LatLng(64.24777, -15.686425),
           name: "Hornafjörður Airbnb",
+          notes: "",
           date: new Date(2022, 8, 27),
           images: ["DSC_1543_start_aurora.JPG", "DSC_1549.JPG"],
         },
         {
           latLng: new L.LatLng(64.419213, -15.401251),
-          name: "Hoffellsjökull",
+          name: "Hoffellsjökull Glacier",
+          notes: "",
           date: new Date(2022, 8, 28),
           images: [
             "DSC_1565.JPG",
@@ -316,6 +350,7 @@
         {
           latLng: new L.LatLng(64.242397, -15.209374),
           name: "Ósland, Höfn",
+          notes: "",
           date: new Date(2022, 8, 28),
           images: [
             "DSC_1592.JPG",
@@ -327,6 +362,7 @@
         {
           latLng: new L.LatLng(64.290626, -15.103381),
           name: "Roadside vista",
+          notes: "",
           date: new Date(2022, 8, 28),
           images: [
             "DSC_1624.JPG",
@@ -337,7 +373,8 @@
         },
         {
           latLng: new L.LatLng(64.341247, -14.937701),
-          name: "Skútafoss",
+          name: "Skútafoss Waterfall",
+          notes: "",
           date: new Date(2022, 8, 28),
           images: [
             "DSC_1696_start_skutafoss.JPG",
@@ -348,6 +385,7 @@
         {
           latLng: new L.LatLng(64.676019, -14.344311),
           name: "Teigarhorn Nature Preserve",
+          notes: "",
           date: new Date(2022, 8, 28),
           images: [
             "DSC_1770.JPG",
@@ -359,30 +397,35 @@
         {
           latLng: new L.LatLng(64.835538, -13.880489),
           name: "Petra's Stone Collection",
+          notes: "",
           date: new Date(2022, 8, 29),
           images: ["DSC_1825.JPG", "DSC_1837_petra_rocks.JPG"],
         },
         {
           latLng: new L.LatLng(65.038876, -14.347944),
           name: "Útsýnispallur Grænafell",
+          notes: "",
           date: new Date(2022, 8, 29),
           images: ["DSC_1840.JPG"],
         },
         {
           latLng: new L.LatLng(65.276398, -14.414994),
           name: "Egilsstaðir",
+          notes: "",
           date: new Date(2022, 8, 29),
           images: ["DSC_1860.JPG"],
         },
         {
           latLng: new L.LatLng(65.457192, -15.807219),
           name: "Roadside vista",
+          notes: "",
           date: new Date(2022, 8, 29),
           images: ["DSC_1874.JPG"],
         },
         {
           latLng: new L.LatLng(65.642092, -16.844672),
           name: "Mývatn geothermal area",
+          notes: "",
           date: new Date(2022, 8, 29),
           images: [
             "DSC_1880.JPG",
@@ -398,6 +441,7 @@
         {
           latLng: new L.LatLng(65.590989, -16.909714),
           name: "Dimmuborgir lava field",
+          notes: "",
           date: new Date(2022, 8, 30),
           images: [
             "DSC_1995.JPG",
@@ -410,24 +454,29 @@
         {
           latLng: new L.LatLng(65.626258, -16.882681),
           name: "Grjótagjá",
+          notes: "",
           date: new Date(2022, 8, 30),
           images: ["DSC_2018.JPG", "DSC_2023.JPG"],
         },
         {
           latLng: new L.LatLng(65.815761, -16.387051),
-          name: "Dettifoss",
+          name: "Dettifoss Waterfall",
+          notes:
+            "The second most powerful waterfall in Europe after the Rhine Falls in Switzerland",
           date: new Date(2022, 8, 30),
           images: ["DSC_2056.JPG"],
         },
         {
           latLng: new L.LatLng(66.0001, -16.510856),
           name: "Ásbyrgi",
+          notes: "",
           date: new Date(2022, 8, 30),
           images: ["DSC_2096.JPG", "DSC_2100.JPG", "DSC_2119_end_asbyrgi.JPG"],
         },
         {
           latLng: new L.LatLng(65.568633, -17.037875),
           name: "Skútustaðagígar Pseudocraters",
+          notes: "",
           date: new Date(2022, 9, 1),
           images: [
             "DSC_2121.JPG",
@@ -442,13 +491,15 @@
         },
         {
           latLng: new L.LatLng(65.68280296031321, -17.5501883417751),
-          name: "Goðafoss",
+          name: "Goðafoss Waterfall",
+          notes: "",
           date: new Date(2022, 9, 1),
           images: ["DSC_2192.JPG", "DSC_2213.JPG"],
         },
         {
           latLng: new L.LatLng(65.332414, -20.570175),
           name: "Kolugljúfur",
+          notes: "",
           date: new Date(2022, 9, 2),
           images: [
             "DSC_2268.JPG",
@@ -459,13 +510,15 @@
         },
         {
           latLng: new L.LatLng(64.755958, -21.548328),
-          name: "Glanni",
+          name: "Glanni Waterfall",
+          notes: "",
           date: new Date(2022, 9, 2),
           images: ["DSC_2307_start_glanni.JPG"],
         },
         {
           latLng: new L.LatLng(64.802853, -23.080368),
-          name: "Ytri Tunga",
+          name: "Ytri Tunga Beach",
+          notes: "",
           date: new Date(2022, 9, 2),
           images: [
             "DSC_2342.JPG",
@@ -478,12 +531,14 @@
         {
           latLng: new L.LatLng(64.772919, -23.631376),
           name: "Near Snæfellsbær Airbnb",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2401.JPG"],
         },
         {
           latLng: new L.LatLng(64.764375, -23.624889),
           name: "Arnarstapi",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: [
             "DSC_2412.JPG",
@@ -498,13 +553,15 @@
         },
         {
           latLng: new L.LatLng(64.735497, -23.775953),
-          name: "Lóndrangar",
+          name: "Lóndrangar volcanic rock pinnacles",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2550.JPG"],
         },
         {
           latLng: new L.LatLng(64.750052, -23.915444),
           name: "Djúpalónssandur Beach",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: [
             "DSC_2589.JPG",
@@ -518,30 +575,35 @@
         {
           latLng: new L.LatLng(64.880814, -23.985833),
           name: "Skarðsvík Beach",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2674.JPG"],
         },
         {
           latLng: new L.LatLng(64.896181, -23.812044),
-          name: "Svöðufoss",
+          name: "Svöðufoss Waterfall",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2690.JPG", "DSC_2700.JPG", "DSC_2703.JPG"],
         },
         {
           latLng: new L.LatLng(64.926011, -23.312192),
-          name: "Kirkjufell",
+          name: "Kirkjufell Mountain",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2707.JPG", "DSC_2740.JPG"],
         },
         {
           latLng: new L.LatLng(64.752701, -23.648412),
           name: "Near Snæfellsbær Airbnb",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2767.JPG"],
         },
         {
           latLng: new L.LatLng(64.772919, -23.631376),
           name: "Near Snæfellsbær Airbnb",
+          notes: "",
           date: new Date(2022, 9, 3),
           images: ["DSC_2383_start_aurora.JPG", "DSC_2387.JPG"],
         },
@@ -555,7 +617,7 @@
               .getElementById("gallery")
               .insertAdjacentHTML(
                 "beforeend",
-                `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${location.name}, ${locationImage}</figcaption></figure>`
+                `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${location.name},  ${locationImage}</figcaption> <br> ${location.notes} </figure>`
               );
           } else {
             document
@@ -564,7 +626,9 @@
                 "beforeend",
                 `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${
                   location.name
-                }, ${location.date.toDateString()}</figcaption></figure>`
+                }, ${location.date.toDateString()}</figcaption> <br> ${
+                  location.notes
+                } </figure>`
               );
           }
         });
