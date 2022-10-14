@@ -61,7 +61,7 @@
       }
 
       figure {
-        padding: 10px;
+        padding: 0px;
         margin-left: auto;
         margin-right: auto;
         display: block;
@@ -69,12 +69,15 @@
       }
 
       figcaption {
+        padding-top: 10px;
         font-style: italic;
+        font-size: large;
       }
 
-      img {
-        max-width: 100%;
+      .gallery-image {
+        max-width: 90%;
         max-height: 90vh;
+        padding-top: 25px;
       }
 
       body {
@@ -83,11 +86,21 @@
       }
 
       #header {
-        padding: 10px;
+        max-width: 60vw;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 30px;
       }
 
       .row {
         display: flex;
+      }
+
+      .header-image {
+        padding-left: 0px;
+        padding-top: 10px;
+        padding-right: 0px;
       }
     </style>
   </head>
@@ -96,13 +109,21 @@
     <div>
       <div class="row">
         <div id="gallery">
+          <img
+            class="header-image"
+            src="img/iceland.png"
+            alt="Map of Iceland's Ring Road"
+          />
           <div id="header">
-            <p>Iceland 2022</p>
+            <h1>Iceland 2022</h1>
             <p>
-              We drove around Iceland's Ring Road from 9/23-10/4/22. The Ring
-              Road, completed in 1974, is a national highway that circles the
-              entire island. It is 821 miles long, although we somehow drove
-              1605 miles on our trip.
+              We drove around Iceland's Ring Road from 9/23-10/4/22, with a
+              detour to the tip of the Snæfellsnes Peninsula. The Ring Road,
+              completed in 1974, is a national highway that circles the entire
+              island. It is 821 miles long, although we somehow drove 1,605
+              miles on our trip. This road is a popular trip itinerary because
+              it passes through almost the whole country and many attractions
+              are immediately accessible from it.
             </p>
           </div>
         </div>
@@ -128,6 +149,14 @@
 
       const locations = [
         {
+          latLng: new L.LatLng(63.868428066582744, -22.675441599592222),
+          name: "Brú Milli Heimsálfa",
+          notes:
+            "Rift between two continents (Eurasian and North American tectonic plates)",
+          date: new Date(2022, 8, 24),
+          images: ["IMG_5778.jpg"],
+        },
+        {
           latLng: new L.LatLng(63.8933, -22.2697),
           name: "Fagradalsfjall",
           notes: "",
@@ -141,6 +170,13 @@
         },
 
         {
+          latLng: new L.LatLng(64.2111194444444, -21.259675),
+          name: "Pingcallavegur parco vista point",
+          notes: "",
+          date: new Date(2022, 8, 25),
+          images: ["IMG_5820.jpg"],
+        },
+        {
           latLng: new L.LatLng(64.264338, -21.11593),
           name: "Þingvellir National Park",
           notes: "",
@@ -152,7 +188,6 @@
             "DSC_0631.JPG",
             "DSC_0643.JPG",
             "DSC_0652_end_thingvellir.JPG",
-            "IMG_5820.jpg",
           ],
         },
         {
@@ -184,6 +219,7 @@
           images: [
             "DSC_0743.JPG",
             "DSC_0774.JPG",
+            "IMG_5896.jpg",
             "DSC_0779.JPG",
             "DSC_0786.JPG",
             "DSC_0804.JPG",
@@ -215,13 +251,21 @@
           name: "Sólheimajökull Glacier",
           notes: "",
           date: new Date(2022, 8, 26),
-          images: [
-            "DSC_0957.JPG",
-            "DSC_0967.JPG",
-            "DSC_0971.JPG",
-            "DSC_1011.JPG",
-            "DSC_1055.JPG",
-          ],
+          images: ["DSC_0957.JPG"],
+        },
+        {
+          latLng: new L.LatLng(63.535945, -19.346744),
+          name: "Sólheimajökull Glacier",
+          notes: "Much more filthy than expected.",
+          date: new Date(2022, 8, 26),
+          images: ["DSC_0967.JPG"],
+        },
+        {
+          latLng: new L.LatLng(63.535945, -19.346744),
+          name: "Sólheimajökull Glacier",
+          notes: "",
+          date: new Date(2022, 8, 26),
+          images: ["DSC_0971.JPG", "DSC_1011.JPG", "DSC_1055.JPG"],
         },
         {
           latLng: new L.LatLng(63.406452, -19.070465),
@@ -231,6 +275,7 @@
           images: [
             "DSC_1072_start_reynisfjara.JPG",
             "DSC_1077.JPG",
+            "IMG_5952.jpg",
             "DSC_1094.JPG",
             "DSC_1108.JPG",
             "DSC_1121.JPG",
@@ -244,7 +289,6 @@
           images: [
             "DSC_1139.JPG",
             "DSC_1152.JPG",
-            "DSC_1158.JPG",
             "DSC_1165.JPG",
             "DSC_1199.JPG",
           ],
@@ -310,6 +354,7 @@
             "DSC_1448.JPG",
             "DSC_1450.JPG",
             "DSC_1464_end_jokulsarlon.JPG",
+            "IMG_6058.jpg",
           ],
         },
         {
@@ -453,7 +498,7 @@
         },
         {
           latLng: new L.LatLng(65.626258, -16.882681),
-          name: "Grjótagjá",
+          name: "Grjótagjá lava cave",
           notes: "",
           date: new Date(2022, 8, 30),
           images: ["DSC_2018.JPG", "DSC_2023.JPG"],
@@ -471,7 +516,14 @@
           name: "Ásbyrgi",
           notes: "",
           date: new Date(2022, 8, 30),
-          images: ["DSC_2096.JPG", "DSC_2100.JPG", "DSC_2119_end_asbyrgi.JPG"],
+          images: ["DSC_2096.JPG", "DSC_2100.JPG"],
+        },
+        {
+          latLng: new L.LatLng(66.0001, -16.510856),
+          name: "Ásbyrgi",
+          notes: "Wild blueberries",
+          date: new Date(2022, 8, 30),
+          images: ["DSC_2119_end_asbyrgi.JPG"],
         },
         {
           latLng: new L.LatLng(65.568633, -17.037875),
@@ -520,13 +572,21 @@
           name: "Ytri Tunga Beach",
           notes: "",
           date: new Date(2022, 9, 2),
-          images: [
-            "DSC_2342.JPG",
-            "DSC_2343.JPG",
-            "DSC_2354.JPG",
-            "DSC_2369.JPG",
-            "DSC_2374.JPG",
-          ],
+          images: ["DSC_2342.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.802853, -23.080368),
+          name: "Ytri Tunga Beach",
+          notes: "Seals in background",
+          date: new Date(2022, 9, 2),
+          images: ["DSC_2343.JPG"],
+        },
+        {
+          latLng: new L.LatLng(64.802853, -23.080368),
+          name: "Ytri Tunga Beach",
+          notes: "",
+          date: new Date(2022, 9, 2),
+          images: ["DSC_2354.JPG", "DSC_2369.JPG", "DSC_2374.JPG"],
         },
         {
           latLng: new L.LatLng(64.772919, -23.631376),
@@ -569,8 +629,14 @@
             "DSC_2612.JPG",
             "DSC_2615.JPG",
             "DSC_2639.JPG",
-            "IMG_6400.jpg",
           ],
+        },
+        {
+          latLng: new L.LatLng(64.750052, -23.915444),
+          name: "Djúpalónssandur Beach",
+          notes: "Picture taken shortly after we got hailed on",
+          date: new Date(2022, 9, 3),
+          images: ["IMG_6400.jpg"],
         },
         {
           latLng: new L.LatLng(64.880814, -23.985833),
@@ -591,7 +657,7 @@
           name: "Kirkjufell Mountain",
           notes: "",
           date: new Date(2022, 9, 3),
-          images: ["DSC_2707.JPG", "DSC_2740.JPG"],
+          images: ["DSC_2707.JPG", "DSC_2740.JPG", "IMG_6423.jpg"],
         },
         {
           latLng: new L.LatLng(64.752701, -23.648412),
@@ -612,25 +678,16 @@
       // add all images to the dom
       locations.forEach((location, locationIndex) => {
         location.images.forEach((locationImage) => {
-          if (location.name === "Unknown") {
-            document
-              .getElementById("gallery")
-              .insertAdjacentHTML(
-                "beforeend",
-                `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${location.name},  ${locationImage}</figcaption> <br> ${location.notes} </figure>`
-              );
-          } else {
-            document
-              .getElementById("gallery")
-              .insertAdjacentHTML(
-                "beforeend",
-                `<figure><img data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${
-                  location.name
-                }, ${location.date.toDateString()}</figcaption> <br> ${
-                  location.notes
-                } </figure>`
-              );
-          }
+          document
+            .getElementById("gallery")
+            .insertAdjacentHTML(
+              "beforeend",
+              `<figure><img class="gallery-image" data-location="${locationIndex}" data-src="https://davidlakata-images.s3.us-east-1.amazonaws.com/2022/iceland/${locationImage}"><figcaption>${
+                location.name
+              }, ${location.date.toDateString()}</figcaption> <br> ${
+                location.notes
+              } </figure>`
+            );
         });
       });
 
@@ -711,7 +768,7 @@
           }
         });
       });
-      const images = document.querySelectorAll("#gallery img");
+      const images = document.querySelectorAll("#gallery figure img");
       images.forEach((image) => {
         imageObserver.observe(image);
       });
